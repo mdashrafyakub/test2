@@ -5,7 +5,10 @@ name: Manual workflow
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  push
+  workflow_dispatch:
+    inputs:
+      name:
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,4 +21,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello world"
+      run: echo "Hello world {{$github.event.name}}"
